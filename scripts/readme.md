@@ -1,0 +1,1 @@
+此文件夹内的脚本用于使用 npx hardhat run 运行，Hardhat 框架还同样支持 task 模式运行，详见tasks文件夹

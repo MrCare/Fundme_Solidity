@@ -2,9 +2,9 @@
  * @Author: Mr.Car
  * @Date: 2025-06-28 15:27:07
  */
-require("@nomicfoundation/hardhat-toolbox");
-require("@chainlink/env-enc").config();
-
+require("@nomicfoundation/hardhat-toolbox")
+require("@chainlink/env-enc").config()
+require("./tasks/index")
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
   // defaultNetwork: "hardhat", // 默认使用本地网络

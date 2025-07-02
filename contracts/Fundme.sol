@@ -9,7 +9,7 @@ import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interf
 // 5. 生产商可以转交取款权，获得取款权的人可以提款
 
 contract FundMe {
-    mapping (address => uint) public fundersToAmount;
+    mapping (address => uint256) public fundersToAmount;
     uint256 constant MINIMUM_VALUE = 1 * 10 ** 18; // 最小金额 $1 (用 1e18 表示)
     AggregatorV3Interface internal dataFeed;
     uint256 constant TARGET_VALUE = 1000 * 10 ** 18; // 目标金额 $100 (用 1e18 表示)

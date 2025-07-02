@@ -44,6 +44,8 @@ npx hardhat run scripts/deploy.js
     - 节点的 url 在 Alchemy 中获取
     - 私钥使用 @chainlink/env-enc 加密
 
+- 部署脚本可以写成 `task` 脚本并使用 `npx hardhat` 直接调用
+
 ## 一些tips
 
 1. `contract.deployed()` 是AI瞎逼的，`contract.waitForDeployment()` 才是正确的;
