@@ -16,7 +16,8 @@ contract FundMe {
     address public owner;
     uint256 deploymentTimestamp; // 部署时间
     uint256 lockTime; // 锁定期
-
+    address erc20Addr; // 与此合约交互的通证合约地址
+    bool public fundSuccess = false; // 标志此次众筹是否成功，当 getFund 被调用时意味着众筹成功
     /**
      * Network: Sepolia
      * Aggregator: ETH/USD
@@ -63,6 +64,14 @@ contract FundMe {
         owner = newOwner;
     }
 
+    function setFunderToAmount(address funder, uint256 amountToUpdate) external {
+        require(msg.sender == erc20Addr, "you don't have permission to call this function");
+        fundersToAmount[funder] = amountToUpdate;
+    }
+    function setErc20Addr(address _erc20Addr) public onlyOwner{
+        erc20Addr = _erc20Addr;
+    }
+
     function getFund() external windowClosed onlyOwner {
         require(convertEthToUsd(address(this).balance) >= TARGET_VALUE, "The project is not successful!");
 
@@ -70,6 +79,7 @@ contract FundMe {
         bool success;
         (success, ) = payable(msg.sender).call{value: address(this).balance}("");
         require(success, "Transfer failed!");
+        fundSuccess = true;
     }
 
     function withdraw() external windowClosed {
