@@ -10,9 +10,10 @@ import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interf
 
 contract FundMe {
     mapping (address => uint256) public fundersToAmount;
+    uint256 public numbersOfFund = 0;
     uint256 constant MINIMUM_VALUE = 1 * 10 ** 18; // 最小金额 $1 (用 1e18 表示)
     AggregatorV3Interface internal dataFeed;
-    uint256 constant TARGET_VALUE = 1000 * 10 ** 18; // 目标金额 $100 (用 1e18 表示)
+    uint256 constant TARGET_VALUE = 1000 * 10 ** 18; // 目标金额 $1000 (用 1e18 表示)
     address public owner;
     uint256 deploymentTimestamp; // 部署时间
     uint256 lockTime; // 锁定期
@@ -58,6 +59,7 @@ contract FundMe {
         require(convertEthToUsd(msg.value) > MINIMUM_VALUE, "You need to spend more ETH!");
         require(block.timestamp < deploymentTimestamp + lockTime, "The project is locked!");
         fundersToAmount[msg.sender] += msg.value;
+        numbersOfFund += 1;
     }
 
     function transferOwnership(address newOwner) public onlyOwner {

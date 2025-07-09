@@ -7,12 +7,12 @@ require("@chainlink/env-enc").config()
 require("./tasks/index")
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  // defaultNetwork: "hardhat", // 默认使用本地网络
-  // networks: {
-  //   sepolia: {
-  //     url: process.env.SEPOLIA_RPC_URL,
-  //     accounts: [process.env.PRIVATE_KEY],
-  //   },
-  // },
+  defaultNetwork: "hardhat", // 默认使用本地网络
+  networks: {
+    sepolia: {
+      url: process.env.SEPOLIA_RPC_URL,
+      accounts: [process.env.PRIVATE_KEY],
+    },
+  },
   solidity: "0.8.28",
 };
